@@ -7,6 +7,7 @@ function App() {
   const [name, setName] = useState('');
   const [counselor, setCounselor] = useState('');
   const [speciality, setSpeciality] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     callToApi().then((response) => {
@@ -14,7 +15,11 @@ function App() {
     });
   }, []);
 
-  const htmlAdalabers = data.map((adalaber, index) => {
+  const filterData = data.filter((adalaber) =>
+    adalaber.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const htmlAdalabers = filterData.map((adalaber, index) => {
     return (
       <tr key={index}>
         <td>{adalaber.name}</td>
@@ -23,6 +28,10 @@ function App() {
       </tr>
     );
   });
+
+  const handleChangeSearch = (ev) => {
+    setSearch(ev.currentTarget.value);
+  };
 
   const handleChangeName = (ev) => {
     setName(ev.currentTarget.value);
@@ -38,12 +47,12 @@ function App() {
 
   const handleClick = (ev) => {
     ev.preventDefault();
-    const newClub = {
+    const newAdalaber = {
       name: name,
       counselor: counselor,
       speciality: speciality,
     };
-    setData([...data, newClub]);
+    setData([...data, newAdalaber]);
     setName('');
     setCounselor('');
     setSpeciality('');
@@ -53,6 +62,16 @@ function App() {
     <div>
       <header>
         <h1>Adalabers</h1>
+        <form>
+          <input
+            autoComplete='off'
+            type='search'
+            name='search'
+            placeholder='Filtrar adalabers por nombre'
+            onChange={handleChangeSearch}
+            value={search}
+          />
+        </form>
       </header>
       <main>
         <section>
