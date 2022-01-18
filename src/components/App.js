@@ -7,7 +7,8 @@ function App() {
   const [name, setName] = useState('');
   const [counselor, setCounselor] = useState('');
   const [speciality, setSpeciality] = useState('');
-  const [search, setSearch] = useState('');
+  const [searchName, setSearchName] = useState('');
+  const [searchCounselor, setSearchCounselor] = useState('choose');
 
   useEffect(() => {
     callToApi().then((response) => {
@@ -15,11 +16,22 @@ function App() {
     });
   }, []);
 
-  const filterData = data.filter((adalaber) =>
-    adalaber.name.toLowerCase().includes(search.toLowerCase())
+  const filteredByName = data.filter((adalaber) =>
+    adalaber.name.toLowerCase().includes(searchName.toLowerCase())
   );
 
-  const htmlAdalabers = filterData.map((adalaber, index) => {
+  const filteredByCounselor = filteredByName.filter((adalaber) => {
+    if (searchCounselor === 'yanelis') {
+      return adalaber.counselor === 'Yanelis';
+    } else if (searchCounselor === 'dayana') {
+      return adalaber.counselor === 'Dayana';
+    } else if (searchCounselor === 'ivan') {
+      return adalaber.counselor === 'Iván';
+    }
+    return 'choose';
+  });
+
+  const htmlAdalabers = filteredByCounselor.map((adalaber, index) => {
     return (
       <tr key={index}>
         <td>{adalaber.name}</td>
@@ -30,7 +42,10 @@ function App() {
   });
 
   const handleChangeSearch = (ev) => {
-    setSearch(ev.currentTarget.value);
+    setSearchName(ev.currentTarget.value);
+  };
+  const handleSelectSearch = (ev) => {
+    setSearchCounselor(ev.target.value);
   };
 
   const handleChangeName = (ev) => {
@@ -63,14 +78,30 @@ function App() {
       <header>
         <h1>Adalabers</h1>
         <form>
+          <label htmlFor='filter'>Filtra por nombre:</label>
           <input
+            id='filterName'
             autoComplete='off'
             type='search'
             name='search'
             placeholder='Filtrar adalabers por nombre'
             onChange={handleChangeSearch}
-            value={search}
+            value={searchName}
           />
+          <label htmlFor='filterCounselor'>Filtra por tutor:</label>
+          <select
+            id='filterCounselor'
+            name='filter'
+            value={searchCounselor}
+            onChange={handleSelectSearch}
+          >
+            <option value='choose' disabled>
+              Escoge una opción
+            </option>
+            <option value='yanelis'>Yanelis</option>
+            <option value='dayana'>Dayana</option>
+            <option value='ivan'>Iván</option>
+          </select>
         </form>
       </header>
       <main>
