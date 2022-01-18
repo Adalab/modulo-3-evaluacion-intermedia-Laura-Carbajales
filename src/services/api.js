@@ -9,6 +9,9 @@ const callToApi = () => {
           name: adalaber.name,
           counselor: adalaber.counselor,
           speciality: adalaber.speciality,
+          social_networks: adalaber.social_networks.map((social) => {
+            return { name: social.name, url: social.url };
+          }),
         };
       });
       return result;

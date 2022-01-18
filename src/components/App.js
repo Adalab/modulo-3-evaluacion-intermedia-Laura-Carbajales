@@ -37,6 +37,17 @@ function App() {
         <td>{adalaber.name}</td>
         <td>{adalaber.counselor}</td>
         <td>{adalaber.speciality}</td>
+        <td>
+          <ul>
+            {adalaber.social_networks.map((social, index) => {
+              return (
+                <li key={index}>
+                  <a href={social.url}>{social.name}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </td>
       </tr>
     );
   });
@@ -118,6 +129,7 @@ function App() {
                 <td>Nombre</td>
                 <td>Tutora</td>
                 <td>Especialidad</td>
+                <td>RR.SS.</td>
               </tr>
             </thead>
             <tbody className='main1__table--body'>{htmlAdalabers}</tbody>
