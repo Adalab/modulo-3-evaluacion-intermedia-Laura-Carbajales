@@ -33,7 +33,7 @@ function App() {
 
   const htmlAdalabers = filteredByCounselor.map((adalaber, index) => {
     return (
-      <tr key={index}>
+      <tr className='row' key={index}>
         <td>{adalaber.name}</td>
         <td>{adalaber.counselor}</td>
         <td>{adalaber.speciality}</td>
@@ -75,11 +75,14 @@ function App() {
 
   return (
     <div>
-      <header>
-        <h1>Adalabers</h1>
-        <form>
-          <label htmlFor='filter'>Filtra por nombre:</label>
+      <header className='header'>
+        <h1 className='header__title'>Adalabers</h1>
+        <form className='header__form'>
+          <label className='header__form--label' htmlFor='filter'>
+            Filtra por nombre:
+          </label>
           <input
+            className='header__form--input'
             id='filterName'
             autoComplete='off'
             type='search'
@@ -88,8 +91,11 @@ function App() {
             onChange={handleChangeSearch}
             value={searchName}
           />
-          <label htmlFor='filterCounselor'>Filtra por tutor:</label>
+          <label className='header__form--label' htmlFor='filterCounselor'>
+            Filtra por tutor:
+          </label>
           <select
+            className='header__form--select'
             id='filterCounselor'
             name='filter'
             value={searchCounselor}
@@ -105,39 +111,56 @@ function App() {
         </form>
       </header>
       <main>
-        <section>
-          <table>
-            <thead>
+        <section className='main1'>
+          <table className='main1__table'>
+            <thead className='main1__table--head'>
               <tr>
                 <td>Nombre</td>
                 <td>Tutora</td>
                 <td>Especialidad</td>
               </tr>
             </thead>
-            <tbody>{htmlAdalabers}</tbody>
+            <tbody className='main1__table--body'>{htmlAdalabers}</tbody>
           </table>
         </section>
-        <section>
-          <form>
-            <label htmlFor='name'>Nombre</label>
-            <input id='name' type='text' name='name' onChange={handleChangeName} value={name} />
-            <label htmlFor='teacher'>Tutora</label>
+        <section className='main2'>
+          <form className='main2__form'>
+            <label className='main2__form--label' htmlFor='name'>
+              Nombre
+            </label>
             <input
+              className='main2__form--input'
+              id='name'
+              type='text'
+              name='name'
+              onChange={handleChangeName}
+              value={name}
+            />
+            <label className='main2__form--label' htmlFor='teacher'>
+              Tutora
+            </label>
+            <input
+              className='main2__form--input'
               id='teacher'
               type='text'
               name='teacher'
               onChange={handleChangeCounselor}
               value={counselor}
             />
-            <label htmlFor='specialty'>Especialidad</label>
+            <label className='main2__form--label' htmlFor='specialty'>
+              Especialidad
+            </label>
             <input
+              className='main2__form--input'
               id='specialty'
               type='text'
               name='specialty'
               onChange={handleChangeSpeciality}
               value={speciality}
             />
-            <button onClick={handleClick}>Añadir una nueva Adalaber</button>
+            <button className='main2__form--btn' onClick={handleClick}>
+              Añadir una nueva Adalaber
+            </button>
           </form>
         </section>
       </main>

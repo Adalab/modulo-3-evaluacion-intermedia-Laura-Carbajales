@@ -1,0 +1,94 @@
+.header {
+  width: 100vw;
+  border-bottom: 2px solid rgb(99, 232, 192);
+  padding: 20px 50px 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__title {
+    color: rgb(56, 189, 149);
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    &--label {
+      color: gray;
+      margin-bottom: 5px;
+      margin-top: 10px;
+    }
+    &--input {
+      margin-bottom: 10px;
+      height: 40px;
+      width: 250px;
+      padding-left: 15px;
+      border: 2px solid rgb(99, 232, 192);
+      border-radius: 5px;
+      color: gray;
+    }
+    &--select {
+      height: 40px;
+      width: 250px;
+      padding-left: 15px;
+      border: 2px solid rgb(99, 232, 192);
+      border-radius: 5px;
+      color: gray;
+    }
+  }
+}
+.main1 {
+  &__table {
+    width: 100vw;
+    border: 2px solid rgb(99, 232, 192);
+    border-radius: 5px;
+    &--head {
+      height: 50px;
+      background-color: rgb(99, 232, 192);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    &--body {
+      & .row {
+        background-color: rgb(237, 237, 237);
+      }
+    }
+  }
+}
+.main2 {
+  display: flex;
+  justify-content: center;
+  &__form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid rgb(99, 232, 192);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    &--label {
+      margin-bottom: 5px;
+    }
+    &--input {
+      margin-bottom: 15px;
+      height: 40px;
+      width: 500px;
+      padding-left: 15px;
+      border: 2px solid rgb(99, 232, 192);
+      border-radius: 5px;
+      color: gray;
+    }
+    &--btn {
+      height: 40px;
+      width: 250px;
+      border: 2px solid rgb(99, 232, 192);
+      border-radius: 5px;
+      color: gray;
+      font-size: 15px;
+      background-color: rgb(99, 232, 192);
+      &:hover {
+        background-color: white;
+        color: gray;
+      }
+    }
+  }
+}
