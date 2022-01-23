@@ -8,7 +8,7 @@ function App() {
   const [counselor, setCounselor] = useState('');
   const [speciality, setSpeciality] = useState('');
   const [searchName, setSearchName] = useState('');
-  const [searchCounselor, setSearchCounselor] = useState('choose');
+  const [searchCounselor, setSearchCounselor] = useState('all');
 
   useEffect(() => {
     callToApi().then((response) => {
@@ -21,14 +21,10 @@ function App() {
   );
 
   const filteredByCounselor = filteredByName.filter((adalaber) => {
-    if (searchCounselor === 'yanelis') {
-      return adalaber.counselor === 'Yanelis';
-    } else if (searchCounselor === 'dayana') {
-      return adalaber.counselor === 'Dayana';
-    } else if (searchCounselor === 'ivan') {
-      return adalaber.counselor === 'Iván';
+    if (searchCounselor === 'all') {
+      return true;
     }
-    return 'choose';
+    return adalaber.counselor.toLowerCase() === searchCounselor.toLowerCase();
   });
 
   const htmlAdalabers = filteredByCounselor.map((adalaber, index) => {
@@ -77,6 +73,7 @@ function App() {
       name: name,
       counselor: counselor,
       speciality: speciality,
+      social_networks: [],
     };
     setData([...data, newAdalaber]);
     setName('');
@@ -112,12 +109,10 @@ function App() {
             value={searchCounselor}
             onChange={handleSelectSearch}
           >
-            <option value='choose' disabled>
-              Escoge una opción
-            </option>
-            <option value='yanelis'>Yanelis</option>
-            <option value='dayana'>Dayana</option>
-            <option value='ivan'>Iván</option>
+            <option value='all'>Todos</option>
+            <option value='Yanelis'>Yanelis</option>
+            <option value='Dayana'>Dayana</option>
+            <option value='Iván'>Iván</option>
           </select>
         </form>
       </header>
